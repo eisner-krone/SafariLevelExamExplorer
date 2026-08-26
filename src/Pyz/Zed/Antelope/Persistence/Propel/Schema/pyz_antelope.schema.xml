@@ -5,6 +5,7 @@
         <column name="id_antelope" required="true" type="INTEGER" primaryKey="true" autoIncrement="true"/>
         <column name="name" required="true" type="VARCHAR" size="255"/>
         <column name="fk_antelope_location" type="INTEGER"/>
+        <column name="color" required="true" type="VARCHAR" size="255"/>
         <unique name="pyz_antelope-name">
             <unique-column name="name"/>
         </unique>
