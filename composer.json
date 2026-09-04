@@ -281,9 +281,6 @@
     "prefer-stable": true,
     "config": {
         "preferred-install": "dist",
-        "platform": {
-            "php": "8.2.0"
-        },
         "use-include-path": true,
         "sort-packages": true,
         "github-protocols": [
