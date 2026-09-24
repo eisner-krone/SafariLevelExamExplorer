@@ -1,0 +1,12 @@
+{% extends template('page-layout-main') %}
+{% define data = {
+    antelopeLocation: _view.antelopeLocation
+} %}
+
+{% block body %}
+    {% if data.antelopeLocation is not null %}
+        <h1>Antelope location #{{ data.antelopeLocation.idAntelopeLocation }}: {{ data.antelopeLocation.locationName }}</h1>
+    {% else %}
+        No antelope location found :(
+    {% endif %}
+{% endblock %}

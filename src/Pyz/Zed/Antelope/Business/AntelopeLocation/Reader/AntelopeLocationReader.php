@@ -2,6 +2,8 @@
 
 namespace Pyz\Zed\Antelope\Business\AntelopeLocation\Reader;
 
+use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
+use Generated\Shared\Transfer\AntelopeLocationResponseTransfer;
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
 use Pyz\Zed\Antelope\Persistence\AntelopeRepository;
 use Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException;
@@ -29,5 +31,21 @@ class AntelopeLocationReader
                 $exception
             );
         }
+    }
+
+    public function getAntelopeLocation(
+        AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
+    ): AntelopeLocationResponseTransfer {
+        $antelopeLocationResponseTransfer = new AntelopeLocationResponseTransfer();
+
+        try {
+            $antelopeLocationTransfer = $this->antelopeRepository->getAntelopeLocation($antelopeLocationCriteriaTransfer);
+            $antelopeLocationResponseTransfer->setAntelopeLocation($antelopeLocationTransfer);
+            $antelopeLocationResponseTransfer->setIsSuccessful(true);
+        } catch (EntityNotFoundException $exception) {
+            $antelopeLocationResponseTransfer->setIsSuccessful(false);
+        }
+
+        return $antelopeLocationResponseTransfer;
     }
 }
