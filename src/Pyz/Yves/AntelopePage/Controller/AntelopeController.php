@@ -3,6 +3,7 @@
 namespace Pyz\Yves\AntelopePage\Controller;
 
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
+use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
 use Spryker\Yves\Kernel\View\View;
 use SprykerShop\Yves\ShopApplication\Controller\AbstractController;
 
@@ -24,6 +25,22 @@ class AntelopeController extends AbstractController
             ['antelope' => $antelopeResponseTransfer->getAntelope()],
             [],
             '@AntelopePage/views/antelope/get.twig'
+        );
+    }
+
+    public function getLocationAction(string $locationName): View
+    {
+        $antelopeLocationCriteriaTransfer = new AntelopeLocationCriteriaTransfer();
+        $antelopeLocationCriteriaTransfer->setLocationName($locationName);
+
+        $antelopeLocationResponseTransfer = $this->getFactory()
+            ->getAntelopeClient()
+            ->getAntelopeLocation($antelopeLocationCriteriaTransfer);
+
+        return $this->view(
+            ['antelopeLocation' => $antelopeLocationResponseTransfer->getAntelopeLocation()],
+            [],
+            '@AntelopePage/views/antelope-location/get.twig'
         );
     }
 }
