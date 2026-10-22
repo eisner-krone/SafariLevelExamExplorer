@@ -13,7 +13,7 @@
         </states>
 
         <transitions>
-            <transition happy="true">
+            <transition happy="true" condition="CustomOms/IsPaymentAuthorized">
                 <source>new</source>
                 <target>paid</target>
                 <event>authorize_payment</event>
