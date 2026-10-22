@@ -39,6 +39,29 @@
                 <action>index</action>
                 <visible>1</visible>
             </antelope-create-page>
+            <antelope-locations-page>
+                <title>Antelope Locations</title>
+                <bundle>antelope-location-gui</bundle>
+                <controller>index</controller>
+                <action>index</action>
+                <visible>1</visible>
+                <pages>
+                    <antelope-location-create-page>
+                        <title>Create Antelope Location</title>
+                        <bundle>antelope-location-gui</bundle>
+                        <controller>index</controller>
+                        <action>create</action>
+                        <visible>0</visible>
+                    </antelope-location-create-page>
+                    <antelope-location-edit-page>
+                        <title>Edit Antelope Location</title>
+                        <bundle>antelope-location-gui</bundle>
+                        <controller>index</controller>
+                        <action>edit</action>
+                        <visible>0</visible>
+                    </antelope-location-edit-page>
+                </pages>
+            </antelope-locations-page>
 
         </pages>
 
