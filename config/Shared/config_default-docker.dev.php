@@ -18,6 +18,7 @@ use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Log\LogConstants;
 use Spryker\Shared\Newsletter\NewsletterConstants;
 use Spryker\Shared\OauthClient\OauthClientConstants;
+use Spryker\Shared\Oms\OmsConstants;
 use Spryker\Shared\ProductManagement\ProductManagementConstants;
 use Spryker\Shared\Propel\PropelConstants;
 use Spryker\Shared\PropelOrm\PropelOrmConstants;
@@ -154,6 +155,8 @@ if (!getenv('SPRYKER_SSL_ENABLE')) {
 // ----------------------------------------------------------------------------
 
 require 'common/config_oms-development.php';
+
+$config[OmsConstants::ENABLE_PROCESS_CACHE] = false;
 
 // ----------------------------------------------------------------------------
 // ------------------------------ OAUTH ---------------------------------------
