@@ -3,10 +3,10 @@
 namespace Pyz\Zed\AntelopeLocationDataImport\Business;
 
 use Generated\Shared\Transfer\DataImporterConfigurationTransfer;
-use Pyz\Zed\AntelopeDataImport\Business\DataImportStep\AntelopeWriterStep;
+use Pyz\Zed\AntelopeLocationDataImport\Business\DataImportStep\AntelopeLocationWriterStep;
 use Spryker\Zed\DataImport\Business\DataImportBusinessFactory;
-
 use Spryker\Zed\DataImport\Business\Model\DataImporterInterface;
+
 class AntelopeLocationDataImportBusinessFactory extends DataImportBusinessFactory
 {
     public function createAntelopeLocationDataImport(?DataImporterConfigurationTransfer $dataImporterConfigurationTransfer = null): DataImporterInterface{
@@ -14,7 +14,7 @@ class AntelopeLocationDataImportBusinessFactory extends DataImportBusinessFactor
         $dataImporter = $this->getCsvDataImporterFromConfig($dataImporterConfigurationTransfer);
 
         $dataSetStepBroker = $this->createTransactionAwareDataSetStepBroker();
-        $dataSetStepBroker->addStep($this->createAntelopeWriterStep());
+        $dataSetStepBroker->addStep($this->createAntelopeLocationWriterStep());
 
         $dataImporter->addDataSetStepBroker($dataSetStepBroker);
 
