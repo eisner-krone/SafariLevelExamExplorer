@@ -27,6 +27,20 @@ interface AntelopeFacadeInterface
         AntelopeLocationTransfer $antelopeLocationTransfer,
     ): AntelopeLocationTransfer;
 
+    /**
+     * @throws \Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException
+     */
+    public function updateAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): AntelopeLocationTransfer;
+
+    /**
+     * @throws \Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException
+     */
+    public function deleteAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): void;
+
     public function getAntelope(
         AntelopeCriteriaTransfer $antelopeCriteriaTransfer,
     ): AntelopeResponseTransfer;

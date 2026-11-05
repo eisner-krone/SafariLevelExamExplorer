@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Pyz\Glue\AntelopeLocationBackendApi\Controller;
 
+use Generated\Shared\Transfer\AntelopeLocationBackendApiAttributesTransfer;
 use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
 use Spryker\Glue\Kernel\Backend\Controller\AbstractController;
@@ -20,26 +21,36 @@ class AntelopeLocationResourceController extends AbstractController
 {
     public function getCollectionAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {
-        return new GlueResponseTransfer();
+        return $this->getFactory()->createAntelopeLocationReader()->getAntelopeLocationCollection($glueRequestTransfer);
     }
 
     public function getAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {
-        return new GlueResponseTransfer();
+        return $this->getFactory()->createAntelopeLocationReader()->getAntelopeLocation($glueRequestTransfer);
     }
 
-    public function postAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
-    {
-        return new GlueResponseTransfer();
+    public function postAction(
+        AntelopeLocationBackendApiAttributesTransfer $antelopeLocationBackendApiAttributesTransfer,
+        GlueRequestTransfer $glueRequestTransfer,
+    ): GlueResponseTransfer {
+        return $this->getFactory()->createAntelopeLocationCreator()->createAntelopeLocation(
+            $antelopeLocationBackendApiAttributesTransfer,
+            $glueRequestTransfer,
+        );
     }
 
-    public function putAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
-    {
-        return new GlueResponseTransfer();
+    public function putAction(
+        AntelopeLocationBackendApiAttributesTransfer $antelopeLocationBackendApiAttributesTransfer,
+        GlueRequestTransfer $glueRequestTransfer,
+    ): GlueResponseTransfer {
+        return $this->getFactory()->createAntelopeLocationUpdater()->updateAntelopeLocation(
+            $antelopeLocationBackendApiAttributesTransfer,
+            $glueRequestTransfer,
+        );
     }
 
     public function deleteAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {
-        return new GlueResponseTransfer();
+        return $this->getFactory()->createAntelopeLocationDeleter()->deleteAntelopeLocation($glueRequestTransfer);
     }
 }

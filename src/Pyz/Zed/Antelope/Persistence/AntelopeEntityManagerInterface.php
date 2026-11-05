@@ -19,4 +19,18 @@ interface AntelopeEntityManagerInterface
     public function createAntelopeLocation(
         AntelopeLocationTransfer $antelopeLocationTransfer,
     ): AntelopeLocationTransfer;
+
+    /**
+     * @throws \Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException
+     */
+    public function updateAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): AntelopeLocationTransfer;
+
+    /**
+     * @throws \Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException
+     */
+    public function deleteAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): void;
 }

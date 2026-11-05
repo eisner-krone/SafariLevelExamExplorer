@@ -22,4 +22,16 @@ class AntelopeLocationWriter
     ): AntelopeLocationTransfer {
         return $this->entityManager->createAntelopeLocation($antelopeLocationTransfer);
     }
+
+    public function updateAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): AntelopeLocationTransfer {
+        return $this->entityManager->updateAntelopeLocation($antelopeLocationTransfer);
+    }
+
+    public function deleteAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): void {
+        $this->entityManager->deleteAntelopeLocation($antelopeLocationTransfer);
+    }
 }

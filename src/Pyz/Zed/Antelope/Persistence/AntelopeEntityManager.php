@@ -13,6 +13,7 @@ use Generated\Shared\Transfer\AntelopeLocationTransfer;
 use Generated\Shared\Transfer\AntelopeTransfer;
 use Orm\Zed\Antelope\Persistence\PyzAntelope;
 use Orm\Zed\Antelope\Persistence\PyzAntelopeLocation;
+use Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
@@ -42,5 +43,47 @@ class AntelopeEntityManager extends AbstractEntityManager implements
             $antelopeEntity->toArray(),
             true,
         );
+    }
+
+    /**
+     * @throws \Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException
+     */
+    public function updateAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): AntelopeLocationTransfer {
+        $antelopeLocationEntity = $this->getAntelopeLocationEntity($antelopeLocationTransfer->getIdAntelopeLocationOrFail());
+
+        $antelopeLocationEntity->fromArray($antelopeLocationTransfer->modifiedToArray());
+        $antelopeLocationEntity->save();
+
+        return $antelopeLocationTransfer->fromArray(
+            $antelopeLocationEntity->toArray(),
+            true,
+        );
+    }
+
+    /**
+     * @throws \Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException
+     */
+    public function deleteAntelopeLocation(
+        AntelopeLocationTransfer $antelopeLocationTransfer,
+    ): void {
+        $this->getAntelopeLocationEntity($antelopeLocationTransfer->getIdAntelopeLocationOrFail())->delete();
+    }
+
+    /**
+     * @throws \Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException
+     */
+    protected function getAntelopeLocationEntity(int $idAntelopeLocation): PyzAntelopeLocation
+    {
+        $antelopeLocationEntity = $this->getFactory()
+            ->createAntelopeLocationQuery()
+            ->findPk($idAntelopeLocation);
+
+        if ($antelopeLocationEntity === null) {
+            throw new EntityNotFoundException(sprintf('Antelope Location %d not found', $idAntelopeLocation));
+        }
+
+        return $antelopeLocationEntity;
     }
 }

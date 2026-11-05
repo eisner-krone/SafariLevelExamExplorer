@@ -7,6 +7,7 @@
 
 namespace Pyz\Glue\AntelopeLocationBackendApi\Plugin;
 
+use Generated\Shared\Transfer\AntelopeLocationBackendApiAttributesTransfer;
 use Generated\Shared\Transfer\GlueResourceMethodCollectionTransfer;
 use Generated\Shared\Transfer\GlueResourceMethodConfigurationTransfer;
 use Pyz\Glue\AntelopeLocationBackendApi\AntelopeLocationBackendApiConfig;
@@ -41,10 +42,12 @@ class AntelopeLocationResourcePlugin extends AbstractResourcePlugin implements J
      */
     public function getDeclaredMethods(): GlueResourceMethodCollectionTransfer
     {
+        $attributes = AntelopeLocationBackendApiAttributesTransfer::class;
+
         return (new GlueResourceMethodCollectionTransfer())
-            ->setGetCollection(new GlueResourceMethodConfigurationTransfer())
-            ->setGet(new GlueResourceMethodConfigurationTransfer())
-            ->setPost(new GlueResourceMethodConfigurationTransfer())
+            ->setGetCollection((new GlueResourceMethodConfigurationTransfer())->setAttributes($attributes))
+            ->setGet((new GlueResourceMethodConfigurationTransfer())->setAttributes($attributes))
+            ->setPost((new GlueResourceMethodConfigurationTransfer())->setAttributes($attributes))
             ->setDelete(new GlueResourceMethodConfigurationTransfer());
     }
 }
