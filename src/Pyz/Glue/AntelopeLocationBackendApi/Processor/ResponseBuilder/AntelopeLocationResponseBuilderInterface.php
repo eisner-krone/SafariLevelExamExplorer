@@ -9,6 +9,7 @@ namespace Pyz\Glue\AntelopeLocationBackendApi\Processor\ResponseBuilder;
 
 use Generated\Shared\Transfer\AntelopeLocationCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
+use Generated\Shared\Transfer\GlueErrorTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
 
 interface AntelopeLocationResponseBuilderInterface
@@ -23,4 +24,10 @@ interface AntelopeLocationResponseBuilderInterface
     ): GlueResponseTransfer;
 
     public function createNoContentResponse(): GlueResponseTransfer;
+
+    public function createErrorResponse(GlueErrorTransfer $glueErrorTransfer): GlueResponseTransfer;
+
+    public function createNotFoundErrorResponse(): GlueResponseTransfer;
+
+    public function createServerErrorResponse(string $code, string $message): GlueResponseTransfer;
 }

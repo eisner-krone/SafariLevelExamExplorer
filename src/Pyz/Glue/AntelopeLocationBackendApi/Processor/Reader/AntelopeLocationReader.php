@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
 use Pyz\Glue\AntelopeLocationBackendApi\Processor\ResponseBuilder\AntelopeLocationResponseBuilderInterface;
 use Pyz\Zed\Antelope\Business\AntelopeFacadeInterface;
+use Pyz\Zed\Antelope\Persistence\Exception\EntityNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 class AntelopeLocationReader implements AntelopeLocationReaderInterface
@@ -36,9 +37,13 @@ class AntelopeLocationReader implements AntelopeLocationReaderInterface
         $antelopeLocationCriteriaTransfer = (new AntelopeLocationCriteriaTransfer())
             ->setIdAntelopeLocation((int)$glueRequestTransfer->getResourceOrFail()->getId());
 
-        $antelopeLocationTransfer = $this->antelopeFacade
-            ->getAntelopeLocation($antelopeLocationCriteriaTransfer)
-            ->getAntelopeLocationOrFail();
+        try {
+            $antelopeLocationTransfer = $this->antelopeFacade
+                ->getAntelopeLocation($antelopeLocationCriteriaTransfer)
+                ->getAntelopeLocationOrFail();
+        } catch (EntityNotFoundException) {
+            return $this->antelopeLocationResponseBuilder->createNotFoundErrorResponse();
+        }
 
         return $this->antelopeLocationResponseBuilder->createAntelopeLocationResponse(
             $antelopeLocationTransfer,

@@ -10,6 +10,7 @@ namespace Pyz\Glue\AntelopeLocationBackendApi\Processor\ResponseBuilder;
 use Generated\Shared\Transfer\AntelopeLocationBackendApiAttributesTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
+use Generated\Shared\Transfer\GlueErrorTransfer;
 use Generated\Shared\Transfer\GlueResourceTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
 use Pyz\Glue\AntelopeLocationBackendApi\AntelopeLocationBackendApiConfig;
@@ -47,6 +48,33 @@ class AntelopeLocationResponseBuilder implements AntelopeLocationResponseBuilder
     public function createNoContentResponse(): GlueResponseTransfer
     {
         return (new GlueResponseTransfer())->setHttpStatus(Response::HTTP_NO_CONTENT);
+    }
+
+    public function createErrorResponse(GlueErrorTransfer $glueErrorTransfer): GlueResponseTransfer
+    {
+        return (new GlueResponseTransfer())
+            ->setHttpStatus($glueErrorTransfer->getStatusOrFail())
+            ->addError($glueErrorTransfer);
+    }
+
+    public function createNotFoundErrorResponse(): GlueResponseTransfer
+    {
+        return $this->createErrorResponse(
+            (new GlueErrorTransfer())
+                ->setStatus(Response::HTTP_NOT_FOUND)
+                ->setCode(AntelopeLocationBackendApiConfig::ERROR_CODE_ANTELOPE_LOCATION_NOT_FOUND)
+                ->setMessage(AntelopeLocationBackendApiConfig::ERROR_MESSAGE_ANTELOPE_LOCATION_NOT_FOUND),
+        );
+    }
+
+    public function createServerErrorResponse(string $code, string $message): GlueResponseTransfer
+    {
+        return $this->createErrorResponse(
+            (new GlueErrorTransfer())
+                ->setStatus(Response::HTTP_INTERNAL_SERVER_ERROR)
+                ->setCode($code)
+                ->setMessage($message),
+        );
     }
 
     protected function createGlueResourceTransfer(AntelopeLocationTransfer $antelopeLocationTransfer): GlueResourceTransfer

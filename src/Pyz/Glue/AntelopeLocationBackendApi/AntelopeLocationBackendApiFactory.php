@@ -19,6 +19,8 @@ use Pyz\Glue\AntelopeLocationBackendApi\Processor\ResponseBuilder\AntelopeLocati
 use Pyz\Glue\AntelopeLocationBackendApi\Processor\ResponseBuilder\AntelopeLocationResponseBuilderInterface;
 use Pyz\Glue\AntelopeLocationBackendApi\Processor\Updater\AntelopeLocationUpdater;
 use Pyz\Glue\AntelopeLocationBackendApi\Processor\Updater\AntelopeLocationUpdaterInterface;
+use Pyz\Glue\AntelopeLocationBackendApi\Processor\Validator\AntelopeLocationValidator;
+use Pyz\Glue\AntelopeLocationBackendApi\Processor\Validator\AntelopeLocationValidatorInterface;
 use Pyz\Zed\Antelope\Business\AntelopeFacadeInterface;
 use Spryker\Glue\Kernel\Backend\AbstractFactory;
 
@@ -38,6 +40,7 @@ class AntelopeLocationBackendApiFactory extends AbstractFactory
             $this->getAntelopeFacade(),
             $this->createAntelopeLocationResponseBuilder(),
             $this->createAntelopeLocationMapper(),
+            $this->createAntelopeLocationValidator(),
         );
     }
 
@@ -47,6 +50,7 @@ class AntelopeLocationBackendApiFactory extends AbstractFactory
             $this->getAntelopeFacade(),
             $this->createAntelopeLocationResponseBuilder(),
             $this->createAntelopeLocationMapper(),
+            $this->createAntelopeLocationValidator(),
         );
     }
 
@@ -61,6 +65,11 @@ class AntelopeLocationBackendApiFactory extends AbstractFactory
     public function createAntelopeLocationResponseBuilder(): AntelopeLocationResponseBuilderInterface
     {
         return new AntelopeLocationResponseBuilder($this->createAntelopeLocationMapper());
+    }
+
+    public function createAntelopeLocationValidator(): AntelopeLocationValidatorInterface
+    {
+        return new AntelopeLocationValidator($this->getAntelopeFacade());
     }
 
     public function createAntelopeLocationMapper(): AntelopeLocationMapperInterface
