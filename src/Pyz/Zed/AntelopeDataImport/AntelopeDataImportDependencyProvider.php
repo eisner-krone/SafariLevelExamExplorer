@@ -2,7 +2,7 @@
 
 namespace Pyz\Zed\AntelopeDataImport;
 
-use Spryrker\Zed\DataImport\DataImportDependencyProvider;
+use Spryker\Zed\DataImport\DataImportDependencyProvider;
 
 class AntelopeDataImportDependencyProvider extends DataImportDependencyProvider
 {}
