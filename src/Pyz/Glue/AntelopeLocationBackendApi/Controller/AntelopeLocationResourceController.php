@@ -13,6 +13,9 @@ use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
 use Spryker\Glue\Kernel\Backend\Controller\AbstractController;
 
+/**
+ * @method \Pyz\Glue\AntelopeLocationBackendApi\AntelopeLocationBackendApiFactory getFactory()
+ */
 class AntelopeLocationResourceController extends AbstractController
 {
     public function getCollectionAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
