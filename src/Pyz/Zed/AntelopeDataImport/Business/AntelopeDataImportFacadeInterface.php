@@ -1,7 +1,7 @@
 <?php
 namespace Pyz\Zed\AntelopeDataImport\Business;
 
-use Generated\Shared\Transfer\DataImportConfigurationTransfer;
+use Generated\Shared\Transfer\DataImporterConfigurationTransfer;
 use Generated\Shared\Transfer\DataImporterReportTransfer;
 
 interface AntelopeDataImportFacadeInterface
@@ -17,6 +17,6 @@ interface AntelopeDataImportFacadeInterface
      *
      * @return \Generated\Shared\Transfer\DataImporterReportTransfer
      */
-    public function importAntelope(?DataImportConfigurationTransfer $dataImporterConfigurationTransfer = null): DataImporterReportTransfer;
+    public function importAntelope(?DataImporterConfigurationTransfer $dataImporterConfigurationTransfer = null): DataImporterReportTransfer;
 
 }
