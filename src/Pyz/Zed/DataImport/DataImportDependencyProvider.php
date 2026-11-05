@@ -29,6 +29,7 @@ use Spryker\Zed\DataImport\DataImportDependencyProvider as SprykerDataImportDepe
 use Spryker\Zed\FileManagerDataImport\Communication\Plugin\FileManagerDataImportPlugin;
 use Spryker\Zed\Kernel\Container;
 use Pyz\Zed\AntelopeDataImport\Communication\Plugin\DataImport\AntelopeDataImportPlugin;
+use Pyz\Zed\AntelopeLocationDataImport\Communication\Plugin\DataImport\AntelopeLocationDataImportPlugin;
 use Spryker\Zed\LocaleDataImport\Communication\Plugin\DataImport\DefaultLocaleStoreDataImportPlugin;
 use Spryker\Zed\LocaleDataImport\Communication\Plugin\DataImport\LocaleStoreDataImportPlugin;
 use Spryker\Zed\PaymentDataImport\Communication\Plugin\PaymentMethodDataImportPlugin;
@@ -303,6 +304,7 @@ class DataImportDependencyProvider extends SprykerDataImportDependencyProvider
             new CategoryStoreDataImportPlugin(),
             new ProductConfigurationDataImportPlugin(),
             new AntelopeDataImportPlugin(),
+            new AntelopeLocationDataImportPlugin(),
         ];
     }
 
