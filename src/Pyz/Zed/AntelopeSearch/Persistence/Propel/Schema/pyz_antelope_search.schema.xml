@@ -12,8 +12,7 @@ namespace="Orm\Zed\AntelopeSearch\Persistence" package="src.Orm.Zed.AntelopeSear
         <behavior name="synchronization">
             <parameter name="resource" value="antelope"/>
             <parameter name="key_suffix_column" value="fk_antelope"/>
-            <parameter name="queue_group" value="sync.search.antelope"/>
-        </behavior>
+            <parameter name="queue_group" value="sync.search.antelope"/>        </behavior>
         <behavior name="timestampable"/>
         <id-method-parameter value="pyz_antelope_search_pk_seq"/>
     </table>

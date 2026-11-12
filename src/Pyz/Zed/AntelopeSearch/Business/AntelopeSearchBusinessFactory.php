@@ -23,5 +23,11 @@ class AntelopeSearchBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    // ....
+    /**
+     * @return \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface
+     */
+    public function getEventBehaviorFacade(): EventBehaviorFacadeInterface
+    {
+        return $this->getProvidedDependency(AntelopeSearchDependencyProvider::FACADE_EVENT_BEHAVIOR);
+    }
 }

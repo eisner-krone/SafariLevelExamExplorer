@@ -43,7 +43,17 @@ class AntelopeSearchWriter
         $this->antelopeSearchEntityManager = $antelopeSearchEntityManager;
     }
 
-    // ....
+    /**
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
+     *
+     * @return void
+     */
+    public function writeCollectionByAntelopeEvents(array $eventTransfers): void
+    {
+        $antelopeIds = $this->eventBehaviorFacade->getEventTransferIds($eventTransfers);
+
+        $this->writeCollectionByAntelopeIds($antelopeIds);
+    }
 
     /**
      * @param int[] $antelopeIds
