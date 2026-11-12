@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed"
-          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
-          namespace="Orm\Zed\Antelope\Persistence" package="src.Orm.Zed.Antelope.Persistence">
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\Antelope\Persistence" package="src.Orm.Zed.Antelope.Persistence">
 
     <table name="pyz_antelope" idMethod="native" allowPkInsert="true" phpName="PyzAntelope">
         <column name="id_antelope" required="true" type="INTEGER" primaryKey="true" autoIncrement="true"/>
@@ -16,11 +14,13 @@
             <reference foreign="id_antelope_location" local="fk_antelope_location"/>
         </foreign-key>
         <id-method-parameter value="pyz_antelope_pk_seq"/>
+        <behavior name="event">
+            <parameter name="pyz_antelope_all" column="*"/>
+        </behavior>
+
     </table>
-    <table name="pyz_antelope_location" idMethod="native" allowPkInsert="true"
-           phpName="PyzAntelopeLocation">
-        <column name="id_antelope_location" required="true" type="INTEGER"
-                primaryKey="true" autoIncrement="true"/>
+    <table name="pyz_antelope_location" idMethod="native" allowPkInsert="true" phpName="PyzAntelopeLocation">
+        <column name="id_antelope_location" required="true" type="INTEGER" primaryKey="true" autoIncrement="true"/>
         <column name="location_name" required="true" type="VARCHAR" size="120"/>
         <column name="latitude" type="FLOAT"/>
         <column name="longitude" type="FLOAT"/>
@@ -29,5 +29,4 @@
         </unique>
         <id-method-parameter value="pyz_antelope_location_pk_seq"/>
     </table>
-
 </database>
