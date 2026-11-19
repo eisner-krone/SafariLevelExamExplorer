@@ -114,6 +114,8 @@ use Spryker\Zed\TaxProductStorage\Communication\Plugin\Publisher\TaxProductPubli
 use Spryker\Zed\TaxStorage\Communication\Plugin\Publisher\TaxSetPublisherTriggerPlugin;
 use Pyz\Shared\AntelopeSearch\AntelopeSearchConfig;
 use Pyz\Zed\AntelopeSearch\Communication\Plugin\Publisher\AntelopeWritePublisherPlugin;
+use Pyz\Shared\AntelopeLocationSearch\AntelopeLocationSearchConfig;
+use Pyz\Zed\AntelopeLocationSearch\Communication\Plugin\Publisher\AntelopeLocationWritePublisherPlugin;
 
 class PublisherDependencyProvider extends SprykerPublisherDependencyProvider
 {
@@ -140,7 +142,8 @@ class PublisherDependencyProvider extends SprykerPublisherDependencyProvider
             $this->getAssetStoragePlugins(),
             $this->getCustomerStoragePlugins(),
             $this->getProductMessageBrokerPlugins(),
-            $this->getAntelopeSearchPlugins()
+            $this->getAntelopeSearchPlugins(),
+            $this->getAntelopeLocationSearchPlugins(),
         );
     }
 
@@ -412,11 +415,23 @@ class PublisherDependencyProvider extends SprykerPublisherDependencyProvider
         ];
     }
 
-        protected function getAntelopeSearchPlugins(): array
+    protected function getAntelopeSearchPlugins(): array
     {
         return [
             AntelopeSearchConfig::ANTELOPE_PUBLISH_SEARCH_QUEUE => [
                 new AntelopeWritePublisherPlugin(),
+            ],
+        ];
+    }
+
+    /**
+     * @return array<string, array<\Spryker\Zed\PublisherExtension\Dependency\Plugin\PublisherPluginInterface>>
+     */
+    protected function getAntelopeLocationSearchPlugins(): array
+    {
+        return [
+            AntelopeLocationSearchConfig::ANTELOPE_LOCATION_PUBLISH_SEARCH_QUEUE => [
+                new AntelopeLocationWritePublisherPlugin(),
             ],
         ];
     }
