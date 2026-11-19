@@ -10,7 +10,7 @@ class AntelopeLocationSearchBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Pyz\Zed\AntelopeLocationSearch\Business\Writer\AntelopeLocationSearchWriter
      */
-    public function createAntelopeLocationSearchWriter()
+    public function createAntelopeLocationSearchWriter(): AntelopeLocationSearchWriter
     {
         return new AntelopeLocationSearchWriter(
             $this->getEventBehaviorFacade(),
