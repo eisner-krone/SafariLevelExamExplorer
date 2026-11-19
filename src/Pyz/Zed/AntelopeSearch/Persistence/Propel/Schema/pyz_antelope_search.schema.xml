@@ -13,9 +13,6 @@
             <parameter name="queue_group" value="sync.search.antelope"/>
         </behavior>
         <behavior name="timestampable"/>
-        <behavior name="event">
-            <parameter name="pyz_antelope_location_all" column="*"/>
-        </behavior>
         <id-method-parameter value="pyz_antelope_search_pk_seq"/>
     </table>
 

@@ -28,5 +28,8 @@
             <unique-column name="location_name"/>
         </unique>
         <id-method-parameter value="pyz_antelope_location_pk_seq"/>
+        <behavior name="event">
+            <parameter name="pyz_antelope_location_all" column="*"/>
+        </behavior>
     </table>
 </database>
