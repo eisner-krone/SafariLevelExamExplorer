@@ -52,6 +52,7 @@ use Spryker\Zed\Synchronization\Communication\Plugin\Queue\SynchronizationSearch
 use Spryker\Zed\Synchronization\Communication\Plugin\Queue\SynchronizationStorageQueueMessageProcessorPlugin;
 use SprykerEco\Zed\Loggly\Communication\Plugin\LogglyLoggerQueueMessageProcessorPlugin;
 use Pyz\Shared\AntelopeSearch\AntelopeSearchConfig;
+use Pyz\Shared\AntelopeLocationSearch\AntelopeLocationSearchConfig;
 
 class QueueDependencyProvider extends SprykerDependencyProvider
 {
@@ -108,6 +109,8 @@ class QueueDependencyProvider extends SprykerDependencyProvider
             SearchHttpConfig::SEARCH_HTTP_CONFIG_SYNC_QUEUE => new SynchronizationStorageQueueMessageProcessorPlugin(),
             AntelopeSearchConfig::ANTELOPE_PUBLISH_SEARCH_QUEUE => new EventQueueMessageProcessorPlugin(),
             AntelopeSearchConfig::ANTELOPE_SYNC_SEARCH_QUEUE => new SynchronizationSearchQueueMessageProcessorPlugin(),
+            AntelopeLocationSearchConfig::ANTELOPE_LOCATION_PUBLISH_SEARCH_QUEUE => new EventQueueMessageProcessorPlugin(),
+            AntelopeLocationSearchConfig::ANTELOPE_LOCATION_SYNC_SEARCH_QUEUE => new SynchronizationSearchQueueMessageProcessorPlugin(),
         ];
     }
 

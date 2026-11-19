@@ -46,6 +46,7 @@ use Spryker\Shared\TaxStorage\TaxStorageConfig;
 use Spryker\Shared\UrlStorage\UrlStorageConfig;
 use Spryker\Shared\UrlStorage\UrlStorageConstants;
 use Pyz\Shared\AntelopeSearch\AntelopeSearchConfig;
+use Pyz\Shared\AntelopeLocationSearch\AntelopeLocationSearchConfig;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -119,6 +120,7 @@ class RabbitMqConfig extends SprykerRabbitMqConfig
             ProductStorageConfig::PUBLISH_PRODUCT_CONCRETE,
             CustomerStorageConfig::PUBLISH_CUSTOMER_INVALIDATED,
             AntelopeSearchConfig::ANTELOPE_PUBLISH_SEARCH_QUEUE,
+            AntelopeLocationSearchConfig::ANTELOPE_LOCATION_PUBLISH_SEARCH_QUEUE,
         ];
     }
 
@@ -154,6 +156,7 @@ class RabbitMqConfig extends SprykerRabbitMqConfig
             ProductConfigurationStorageConfig::PRODUCT_CONFIGURATION_SYNC_STORAGE_QUEUE,
             SearchHttpConfig::SEARCH_HTTP_CONFIG_SYNC_QUEUE,
             AntelopeSearchConfig::ANTELOPE_SYNC_SEARCH_QUEUE,
+            AntelopeLocationSearchConfig::ANTELOPE_LOCATION_SYNC_SEARCH_QUEUE,
         ];
     }
 
